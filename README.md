@@ -22,10 +22,6 @@ const routes = require("./routes");
 // <your> express application:
 const app = express();
 
-function inlineRoute(req, res) {
-  res.json({});
-}
-
 expressRouting(app, routes);
 ```
 
@@ -33,6 +29,11 @@ where *routes.js* is defined as follows:
 
 ```
 // routes.js:
+
+function inlineRoute(req, res) {
+  res.json({});
+}
+
 module.exports = {
   '* /': require('./testRoutes').allMethods,   // all HTTP methods resquested to /
   'get *': require('./testRoutes').allGet,     // get requests to all paths
