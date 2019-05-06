@@ -15,8 +15,12 @@ npm install express-routing
 
 ```
 const expressRouting = require("express-routing");
+const express = require("express");
 
-async function inlineRoute(req, res) {
+// <your> express application:
+const app = express();
+
+function inlineRoute(req, res) {
   res.json({});
 }
 
