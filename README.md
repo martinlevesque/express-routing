@@ -14,8 +14,10 @@ npm install express-routing
 ## Usage Example
 
 ```
+// app.js:
 const expressRouting = require("express-routing");
 const express = require("express");
+const routes = require("./routes");
 
 // <your> express application:
 const app = express();
@@ -24,7 +26,14 @@ function inlineRoute(req, res) {
   res.json({});
 }
 
-const routes = {
+expressRouting(app, routes);
+```
+
+where *routes.js* is defined as follows:
+
+```
+// routes.js:
+module.exports = {
   '* /': require('./testRoutes').allMethods,   // all HTTP methods resquested to /
   'get *': require('./testRoutes').allGet,     // get requests to all paths
   'get /inline': inlineRoute,                  
@@ -37,8 +46,32 @@ const routes = {
     }
   }
 };
+```
 
-expressRouting(app, routes);
+*testRoutes* in this example is:
+
+```
+// testRoutes.js:
+function allGet(req, res, next) {
+  console.log(`all get...`)
+  next();
+}
+
+function allMethods(req, res, next) {
+  console.log(`all methods...`)
+  next();
+}
+
+function login(req, res, next) {
+  res.json({auth: "valid"})
+}
+
+module.exports = {
+  login,
+  allMethods,
+  allGet
+}
+
 ```
 
 ## API
