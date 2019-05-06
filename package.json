@@ -14,8 +14,9 @@
     "url": "git+https://github.com/martinlevesque/express-routing.git"
   },
   "keywords": [
-    "delay",
-    "http-delay"
+    "express",
+    "router",
+    "routing"
   ],
   "author": "Martin Levesque",
   "license": "ISC",
